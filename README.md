@@ -1,90 +1,89 @@
-# NxpmLatest
+# Web
 
-This project was generated using [Nx](https://nx.dev).
+This project was generated using [@nxpm/stack](https://github.com/nxpm/stack) which is based on [Nx](https://nx.dev).
 
-<p align="center"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="450"></p>
+<p align="center"><img src="https://avatars.githubusercontent.com/u/65322676?v=4" width="450"></p>
 
-🔎 **Nx is a set of Extensible Dev Tools for Monorepos.**
+# Setup
 
-## Adding capabilities to your workspace
+Start the database server (add `-d` to run it in the background):
 
-Nx supports many plugins which add capabilities for developing different types of applications and different tools.
+```shell
+docker-compose up
+```
 
-These capabilities include generating applications, libraries, etc as well as the devtools to test, and build projects as well.
+Copy the `.env.example` file to `.env`:
 
-Below are our core plugins:
+```shell
+cp .env.example .env
+```
 
-- [React](https://reactjs.org)
-  - `npm install --save-dev @nrwl/react`
-- Web (no framework frontends)
-  - `npm install --save-dev @nrwl/web`
-- [Angular](https://angular.io)
-  - `npm install --save-dev @nrwl/angular`
-- [Nest](https://nestjs.com)
-  - `npm install --save-dev @nrwl/nest`
-- [Express](https://expressjs.com)
-  - `npm install --save-dev @nrwl/express`
-- [Node](https://nodejs.org)
-  - `npm install --save-dev @nrwl/node`
+Create the database schema:
 
-There are also many [community plugins](https://nx.dev/nx-community) you could add.
+```shell
+yarn setup
+```
 
-## Generate an application
+# Development server
 
-Run `nx g @nrwl/react:app my-app` to generate an application.
+Start Api
 
-> You can use any of the plugins above to generate applications as well.
+```shell
+yarn dev:api
+```
 
-When using Nx, you can create multiple applications and libraries in the same workspace.
+Start Web
 
-## Generate a library
+```shell
+yarn dev:web
+```
 
-Run `nx g @nrwl/react:lib my-lib` to generate a library.
+# Generate GraphQL SDK
 
-> You can also use any of the plugins above to generate libraries as well.
+The queries for the GraphQL SDK are stored in `libs/web/core/data-access/src/graphql`.
 
-Libraries are sharable across libraries and applications. They can be imported from `@nxpm-latest/mylib`.
+After updating the queries you can re-generate the SDK:
 
-## Development server
+```shell
+yarn sdk:web
+```
 
-Run `nx serve my-app` for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
+Or run it in watch mode
 
-## Code scaffolding
+```shell
+yarn sdk:web:watch
+```
 
-Run `nx g @nrwl/react:component my-component --project=my-app` to generate a new component.
+# Building the project
 
-## Build
+You can build both apps into a production build:
 
-Run `nx build my-app` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+```shell
+yarn build
+```
 
-## Running unit tests
+After that, you can run the production app:
 
-Run `nx test my-app` to execute the unit tests via [Jest](https://jestjs.io).
+```shell
+yarn start
+```
 
-Run `nx affected:test` to execute the unit tests affected by a change.
+Build Api
 
-## Running end-to-end tests
+```shell
+yarn build:api
+```
 
-Run `ng e2e my-app` to execute the end-to-end tests via [Cypress](https://www.cypress.io).
+Build Web
 
-Run `nx affected:e2e` to execute the end-to-end tests affected by a change.
+```shell
+yarn build:web
+```
 
-## Understand your workspace
+# Components
 
-Run `nx dep-graph` to see a diagram of the dependencies of your projects.
-
-## Further help
-
-Visit the [Nx Documentation](https://nx.dev) to learn more.
-
-## ☁ Nx Cloud
-
-### Computation Memoization in the Cloud
-
-<p align="center"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-cloud-card.png"></p>
-
-Nx Cloud pairs with Nx in order to enable you to build and test code more rapidly, by up to 10 times. Even teams that are new to Nx can connect to Nx Cloud and start saving time instantly.
-
-Teams using Nx gain the advantage of building full-stack applications with their preferred framework alongside Nx’s advanced code generation and project dependency graph, plus a unified experience for both frontend and backend developers.
-
-Visit [Nx Cloud](https://nx.app/) to learn more.
+```markdown
+Api: api
+Web: web
+Web: web
+```
